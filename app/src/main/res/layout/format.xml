@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="35dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/relativelayout"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/orange"
+            android:id="@+id/imvew"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_toRightOf="@id/imvew"
+            android:layout_marginStart="20dp"
+            android:textSize="30sp"
+            android:id="@+id/textvw"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:layout_toRightOf="@id/imvew"
+            android:layout_below="@id/textvw"
+            android:layout_marginStart="20dp"
+            android:textSize="30sp"
+            android:id="@+id/textvw1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:layout_toRightOf="@id/textvw"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/button"/>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
