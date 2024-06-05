@@ -40,7 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         ModelClass modelClass = userlist.get(i);
         myViewHolder.imageView.setImageResource(modelClass.getImageurl());
         myViewHolder.textView.setText(modelClass.getName());
-//        myViewHolder.textView1.setText(modelClass.getAge());
+
         myViewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
