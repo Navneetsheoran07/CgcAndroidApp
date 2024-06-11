@@ -7,6 +7,7 @@ public class ApiClient {
     static Retrofit getRetrofit(){
         retrofit2.Retrofit retrofit = new retrofit2.Retrofit.Builder()
                 .baseUrl(BASE_URL)
+
                 .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
                 .build();
         return retrofit;
