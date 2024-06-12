@@ -6,7 +6,6 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,7 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,57 +24,57 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class AudioFileActivity extends AppCompatActivity {
-Button button;
+public class VideoActivity extends AppCompatActivity {
+Button  button;
 ListView listView;
-ArrayList<String>alpath;
-ArrayList<String>alname;
-MediaPlayer mediaPlayer ;
+VideoView videoView;
+
+    ArrayList<String>alpath;
+    ArrayList<String>alname;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_audio_file);
+        setContentView(R.layout.activity_video);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
-        button = findViewById(R.id.button10);
-        listView = findViewById(R.id.listViewaudio);
-        alpath = new ArrayList<>();
-        alname = new ArrayList<>();
+        button= findViewById(R.id.button11);
+        listView = findViewById(R.id.videolistview);
+        videoView = findViewById(R.id.videoView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkSelfPermission(Manifest.permission.READ_MEDIA_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-                    ReadMusic();
+                if (checkSelfPermission(Manifest.permission.READ_MEDIA_VIDEO) == PackageManager.PERMISSION_GRANTED) {
+                    ReadVideo();
                 }
                 else {
-                    requestPermissions(new String[]{android.Manifest.permission.READ_MEDIA_AUDIO}, 134);
+                    requestPermissions(new String[]{Manifest.permission.READ_MEDIA_VIDEO}, 134);
                 }
+
             }
         });
+
     }
     @SuppressLint("Range")
-    private void ReadMusic() {
-        Uri musicuri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        ContentResolver resolver = getContentResolver();
-        String sel = MediaStore.Audio.Media.IS_MUSIC + "!=0";
-        String shortorder = MediaStore.Audio.Media.TITLE + " ASC";
+    private void ReadVideo() {
+        alpath = new ArrayList<>();
+        alname = new ArrayList<>();
 
-        Cursor cursor = resolver.query(musicuri, null, sel, null, shortorder);
-        //  Cursor cursor =resolver.query(musicuri,null,null,null,null);
+        Uri musicuri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+        ContentResolver resolver = getContentResolver();
+
+
+          Cursor cursor =resolver.query(musicuri,null,null,null,null);
         if (cursor != null) {
             while (cursor.moveToNext()) {
-                String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-                long id = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
+                String name = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.TITLE));
+                long id = cursor.getLong(cursor.getColumnIndex(MediaStore.Video.Media._ID));
 
                 Uri uri = ContentUris.withAppendedId(musicuri, id);
                 alname.add(name);
@@ -85,8 +86,8 @@ MediaPlayer mediaPlayer ;
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String paths = alpath.get(position).toString();
-                        Toast.makeText(AudioFileActivity.this, paths, Toast.LENGTH_SHORT).show();
-                        PlayMusic(paths);
+                        Toast.makeText(VideoActivity.this, paths, Toast.LENGTH_SHORT).show();
+                        PlayVideo(paths);
 
 
                     }
@@ -98,23 +99,13 @@ MediaPlayer mediaPlayer ;
         }
     }
 
-    private void PlayMusic(String paths) {
-
-        if (mediaPlayer!=null){
-            mediaPlayer.stop();
-
-        }else{
-            mediaPlayer = new MediaPlayer();
-            try {
-                mediaPlayer.setDataSource(getApplicationContext(), Uri.parse(paths));
-          mediaPlayer.prepare();
-          mediaPlayer.start();
-                Toast.makeText(this, "Music Startded", Toast.LENGTH_SHORT).show();
+    private void PlayVideo(String paths) {
+        videoView.setVideoURI(Uri.parse(paths));
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
+        videoView.start();
 
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 }
