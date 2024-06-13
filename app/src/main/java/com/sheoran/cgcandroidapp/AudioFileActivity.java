@@ -69,7 +69,7 @@ MediaPlayer mediaPlayer ;
         String shortorder = MediaStore.Audio.Media.TITLE + " ASC";
 
         Cursor cursor = resolver.query(musicuri, null, sel, null, shortorder);
-        //  Cursor cursor =resolver.query(musicuri,null,null,null,null);
+
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
