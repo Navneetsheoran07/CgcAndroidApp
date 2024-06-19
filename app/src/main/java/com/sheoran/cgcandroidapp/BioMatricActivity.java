@@ -37,6 +37,7 @@ public class BioMatricActivity extends AppCompatActivity {
 
 
 
+
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.P){
             bioMatricCallBacks = new BioMatricCallBacks(this);
 

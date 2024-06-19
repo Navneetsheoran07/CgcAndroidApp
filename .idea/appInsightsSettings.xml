@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.sheoran.cgcandroidapp" />
+                  <option name="mobileSdkAppId" value="1:554665852899:android:f60c63acfd417e6b3e2ad6" />
+                  <option name="projectId" value="cgc-android-app" />
+                  <option name="projectNumber" value="554665852899" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

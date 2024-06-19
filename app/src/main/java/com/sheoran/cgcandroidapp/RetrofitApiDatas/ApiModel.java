@@ -6,6 +6,7 @@ public class ApiModel {
     public String title;
     public String body;
 
+
     public ApiModel(int userId, int id, String title, String body) {
         this.userId = userId;
         this.id = id;
