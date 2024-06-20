@@ -38,16 +38,16 @@ public class BioMatricActivity extends AppCompatActivity {
 
 
 
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.P){
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.P) {
             bioMatricCallBacks = new BioMatricCallBacks(this);
-
+        }
             if (checkSelfPermission(Manifest.permission.USE_BIOMETRIC)== PackageManager.PERMISSION_GRANTED){
                 FingerPrint();
             }
             else {
                 requestPermissions(new String[]{Manifest.permission.USE_BIOMETRIC}, 134);
             }
-        }
+
     }
 
     private void FingerPrint() {
@@ -89,6 +89,13 @@ public class BioMatricActivity extends AppCompatActivity {
 
 
             }
+        }
+        else {
+            Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            requestPermissions(new String[]{Manifest.permission.USE_BIOMETRIC}, 134);
+
+
+
         }
 
     }

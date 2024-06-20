@@ -25,6 +25,15 @@
         android:theme="@style/Theme.CgcAndroidApp"
         tools:targetApi="31">
         <activity
+            android:name=".AuthFirebasess.GoogleAuthActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".AuthFirebasess.OtpVerifiyActivity"
             android:exported="true">
             <intent-filter>
