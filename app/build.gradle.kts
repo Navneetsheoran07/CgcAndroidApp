@@ -44,9 +44,16 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.play.services.auth)
     implementation(libs.firebase.bom)
-    implementation ("com.airbnb.android:lottie:3.4.0")
+    implementation (libs.lottie)
 
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
 
+    implementation ("com.google.firebase:firebase-analytics")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+
+    // Add the dependency for the Realtime Database library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-database")
 }
